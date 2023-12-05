@@ -1,0 +1,63 @@
+body {
+    background-color: rgb(0, 68, 68);
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    max-height: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.base-card {
+    height: 350px;
+    width: 600px;
+    background-color: rgb(44, 56, 59);
+    border-radius: 35px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    bottom: 90px;
+}
+
+.main-card {
+    height: 350px;
+    width: 250px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 35px;
+    opacity: 0.5;
+}
+
+.sub-div {
+    height: 350px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+    opacity: 0.3;
+}
+
+.selected-info {
+    background-color: aqua;
+    /* opacity: 1; */
+    width: 350px;
+    height: 140px;
+}
+
+.select-day {
+    background-color: brown;
+    width: 350px;
+    height: 120px;
+}
+
+.hourly-data {
+    width: 70%;
+    height: 100px;
+    background-color: white;
+    position: relative;
+    top: 35px;
+}
