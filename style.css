@@ -31,13 +31,16 @@ body {
 .change-loc {
     height: 70px;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     /* background-color: aliceblue; */
 }
 
 .info-today-main {
     width: 100%;
     height: 350px;
-    /* background-color: aqua; */
+    background-color: rgb(140, 153, 153);
 }
 
 .info-today-sub {
@@ -50,7 +53,21 @@ body {
 }
 
 .top-bar {
+    height: 75px;
+    width: auto;
     background-color: black;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.top-bar > div {
+    height: 50px;
+    width: 50px;
+    background-color: white;
+    margin: auto 10px auto;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
 }
 
 .day-select {
@@ -60,5 +77,34 @@ body {
 }
 
 .highlights {
-    /*  */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.highlights div {
+    background-color: black;
+    width: 180px;
+    height: 144px;
+    margin-top: 40px;
+    margin-right: 20px;
+}
+
+.center-elements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-icon {
+    height: 250px;
+    width: auto;
+    background-color: beige;
+}
+
+#main-img {
+    width: 200px;
+    object-position: center top;
 }
