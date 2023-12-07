@@ -16,6 +16,8 @@ body {
 .base-card {
     height: 80vh;
     width: 70vw;
+    border: 2px solid black;
+    border-radius: 35px;
     background-color: rgb(255, 255, 255);
     display: flex;
 }
@@ -23,7 +25,9 @@ body {
 .main-card {
     height: 100%;
     width: 30%;
-    background-color: rgb(255, 0, 0);
+    /* border: 2px solid black; */
+    border-radius: 35px 0 0 35px;
+    background-color: white;
     display: flex;
     flex-direction: column;
 }
@@ -39,12 +43,16 @@ body {
 
 .info-today-main {
     width: 100%;
-    height: 350px;
-    background-color: rgb(140, 153, 153);
+    height: 450px;
+    background-color: white;
+    /* border: 1px solid red; */
 }
 
 .info-today-sub {
-    /*  */
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid blue; */
+    align-items: center;
 }
 
 .sub-card {
@@ -55,7 +63,8 @@ body {
 .top-bar {
     height: 75px;
     width: auto;
-    background-color: black;
+    border-radius: 0px 35px 0px 0px;
+    /* background-color: aqua; */
     display: flex;
     flex-direction: row-reverse;
 }
@@ -63,7 +72,7 @@ body {
 .top-bar > div {
     height: 50px;
     width: 50px;
-    background-color: white;
+    background-color: rgb(232, 232, 232);
     margin: auto 10px auto;
     border-radius: 50%;
     text-align: center;
@@ -73,18 +82,59 @@ body {
 .day-select {
     height: 200px;
     width: auto;
-    background-color: aqua;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.day-select > .day {
+    height: 100px;
+    width: 75px;
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 100px;
+    color: aliceblue;
+    background-color: black;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.day-name {
+    width: 75px;
+    height: 20px;
+    border-radius: 15px 15px 0px 0px;
+    background-color: white;
+}
+
+.day-select-icon {
+    height: 60px;
+    width: auto;
+    background-color: blue;
+}
+
+.day-max-min {
+    height: 20px;
+    width: auto;
+    background-color: chocolate;
+    border-radius: 0px 0px 15px 15px;
 }
 
 .highlights {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    background-color: white;
     justify-content: space-around;
 }
 
 .highlights div {
-    background-color: black;
+    background-color: rgb(232, 232, 232);
+    border-radius: 20px;
+    border: 1px solid black;
     width: 180px;
     height: 144px;
     margin-top: 40px;
@@ -101,10 +151,29 @@ body {
 .main-icon {
     height: 250px;
     width: auto;
-    background-color: beige;
+    /* background-color: beige; */
+    /* border: 1px solid black; */
+    text-align: center;
 }
 
 #main-img {
     width: 200px;
-    object-position: center top;
+    margin-top: 25px;
+}
+
+.main-temp {
+    font-size: 100px;
+    margin-left: 10px;
+}
+
+.main-day {
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.flex-item2 {
+    margin-top: 20px;
+    width: auto;
+    height: 50px;
 }
