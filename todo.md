@@ -1,1 +1,1 @@
-center the main card icon/image
+correct the sub-card colours

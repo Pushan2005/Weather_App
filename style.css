@@ -28,7 +28,7 @@ body {
     width: 30%;
     /* border: 2px solid black; */
     border-radius: 35px 0 0 35px;
-    background-color: rgb(232, 232, 232);
+    background-color: white;
     display: flex;
     flex-direction: column;
 }
@@ -46,13 +46,13 @@ body {
     width: 100%;
     height: 450px;
 
-    /* border: 1px solid red; */
+    /* border: 1px solid white; */
 }
 
 .info-today-sub {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .sub-card {
@@ -64,7 +64,7 @@ body {
     height: 75px;
     width: auto;
     border-radius: 0px 35px 0px 0px;
-    /* background-color: aqua; */
+    background-color: rgb(232, 232, 232);
     display: flex;
     flex-direction: row-reverse;
 }
@@ -72,7 +72,7 @@ body {
 .top-bar > div {
     height: 50px;
     width: 50px;
-    background-color: rgb(232, 232, 232);
+    background-color: white;
     margin: auto 10px auto;
     border-radius: 50%;
     text-align: center;
@@ -82,7 +82,7 @@ body {
 .day-select {
     height: 200px;
     width: auto;
-    background-color: white;
+    background-color: rgb(232, 232, 232);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -96,7 +96,7 @@ body {
     border-radius: 15px;
     text-align: center;
     color: black;
-    background-color: rgb(232, 232, 232);
+    background-color: white;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -107,19 +107,30 @@ body {
 .highlights {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap-reverse;
-    background-color: white;
+    flex-wrap: wrap;
+    background-color: rgb(232, 232, 232);
     justify-content: space-around;
 }
 
 .highlights div {
-    background-color: rgb(232, 232, 232);
+    background-color: white;
     border-radius: 20px;
     border: 1px solid black;
     width: 180px;
     height: 144px;
     margin-top: 40px;
     margin-right: 20px;
+}
+
+.uv-in {
+    display: flex;
+    flex-direction: column;
+}
+
+.uv-in h4 {
+    margin-left: 10px;
+    position: relative;
+    bottom: 10px;
 }
 
 .center-elements {
@@ -138,7 +149,9 @@ body {
 }
 
 #main-img {
-    width: 200px;
+    width: 250px;
+    position: relative;
+    bottom: 35px;
     margin-top: 25px;
 }
 
@@ -154,7 +167,9 @@ body {
 }
 
 .flex-item2 {
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-left: 25px;
     width: auto;
-    height: 50px;
+    height: 20px;
+    font-size: 15px;
 }
