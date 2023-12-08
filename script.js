@@ -1,3 +1,4 @@
+// let API_KEY = "";
 // let days = 7;
 // let respData;
 
