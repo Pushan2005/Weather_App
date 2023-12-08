@@ -12,17 +12,18 @@
     </head>
     <body>
         <div class="wrapper">
-            <div class="base-card">
+            <div class="base-card acrylic">
                 <div class="main-card">
                     <div class="change-loc">
-                        <label for="change-loc"></label>
                         <input
-                            type="text"
-                            name="change-loc"
-                            title="location change"
-                            placeholder="Change Location"
+                        id="loc-change-input"
+                        type="text"
+                        name="change-loc"
+                        title="location change"
+                        placeholder="Change Location"
                         />
-                        <button>Change</button>
+                        <label for="change-loc"></label>
+                        <button type="button" class="btn">Change</button>
                     </div>
                     <div class="info-today-main">
                         <div class="main-icon">
@@ -31,7 +32,7 @@
                         <div class="main-temp">
                             12<span style="font-size: 50px">°C</span>
                         </div>
-                        <div class="main-day">Monday</div>
+                        <div class="main-day">Monday | Date</div>
                     </div>
                     <div class="info-today-sub">
                         <div class="weather-desc flex-item2">Mostly cloudy</div>
