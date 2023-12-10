@@ -3,11 +3,11 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Hello</title>
+        <title>IWD Assignment</title>
         <link rel="stylesheet" href="style.css" />
         <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Varela+Round"
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Varela+Round"
         />
     </head>
     <body>
@@ -16,7 +16,7 @@
                 <div class="main-card">
                     <div class="change-loc">
                         <input
-                        id="loc-change-input"
+                        id="locchangeinput"
                         type="text"
                         name="change-loc"
                         title="location change"
@@ -27,69 +27,76 @@
                     </div>
                     <div class="info-today-main">
                         <div class="main-icon">
-                            <img id="main-img" src="/icons/day/122.svg" alt="main icon" />
+                            <img id="mainimg" src="/icons/day/122.svg" alt="main icon" />
                         </div>
-                        <div class="main-temp">
-                            12<span style="font-size: 50px">°C</span>
+                        <div id="maintemp" class="main-temp">
+                            12°C
                         </div>
-                        <div class="main-day">Monday | Date</div>
+                        <div id="maindaydate" class="main-day">Monday | Date</div>
                     </div>
                     <div class="info-today-sub">
-                        <div class="weather-desc flex-item2">Mostly cloudy</div>
-                        <div class="rain-prob flex-item2">Rain - 30%</div>
+                        <div id="weatherdesc" class="weather-desc flex-item2">Mostly cloudy</div>
+                        <div id="rainprob" class="rain-prob flex-item2">Rain - 30%</div>
                     </div>
                 </div>
                 <div class="sub-card">
                     <div class="top-bar">
-                        <div class="c">°C</div>
-                        <div class="f">°F</div>
+                        <div onclick="setTempratureUnit(1)" id="tempunitc" class="c">°C</div>
+                        <div onclick="setTempratureUnit(2)" id="tempunitf" class="f">°F</div>
                     </div>
                     <div class="day-select">
-                        <div class="day">
-                            <p>Mon</p>
+                        <div onclick="setDay(0)" class="day">
+                            <p id="day0name">Mon</p>
                             <img
+                                id="day0icon"
+                                src="/icons/day/122.svg"
+                                alt="day icon"                                
+                                />
+                        </div>
+                        <div onclick="setDay(1)" class="day">
+                            <p id="day1name">Tue</p>
+                            <img
+                                id="day1icon"
                                 src="/icons/day/122.svg"
                                 alt="day icon"                                
                             />
                         </div>
-                        <div class="day">
-                            <p>Tue</p>
+                        <div onclick="setDay(2)" class="day">
+                            <p id="day2name">Wed</p>
                             <img
-                                src="/icons/day/122.svg"
-                                alt="day icon"                                
-                            />
-                        </div>
-                        <div class="day">
-                            <p>Wed</p>
-                            <img
+                                id="day2icon"
                                 src="/icons/day/122.svg"
                                 alt="day icon"                            
                             />
                         </div>
-                        <div class="day">
-                            <p>Thu</p>
+                        <div onclick="setDay(3)" class="day">
+                            <p id="day3name">Thu</p>
                             <img
+                                id="day3icon"
                                 src="/icons/day/122.svg"
                                 alt="day icon"                                
                             />
                         </div>
-                        <div class="day">
-                            <p>Fri</p>
+                        <div onclick="setDay(4)" class="day">
+                            <p id="day4name">Fri</p>
                             <img
+                            id="day4icon"
                                 src="/icons/day/122.svg"
                                 alt="day icon"                                
                             />
                         </div>
-                        <div class="day">
-                            <p>Sat</p>
+                        <div onclick="setDay(5)" class="day">
+                            <p id="day5name">Sat</p>
                             <img
-                                src="/icons/day/122.svg"
-                                alt="day icon"
+                            id="day5icon"
+                            src="/icons/day/122.svg"
+                            alt="day icon"
                             />
                         </div>
-                        <div class="day">
-                            <p>Sun</p>
+                        <div onclick="setDay(6)" class="day">
+                            <p id="day6name">Sun</p>
                             <img
+                                id="day6icon"
                                 src="/icons/day/122.svg"
                                 alt="day icon"
                             />
@@ -98,31 +105,31 @@
                     <div class="highlights">
                         <div class="uv-in htitle">
                             <h4>UV Index</h3>
-                            <p class="highlight-content">5</p>
+                            <p id="uvidx" class="highlight-content">5</p>
                         </div>
                         <div class="wind-status htitle">
                             <H4>Wind Status</H4>
-                            <p class="highlight-content">7km/h</p>
+                            <p id="windspeed" class="highlight-content">7km/h</p>
                         </div>
                         <div class="sunrise-set snhtitle">
                             <h4>Sunrise & Sunset</h4>
                             <img src="/icons/sunrise.png" alt="sunrise icon" class="inliner img-margin" />
-                            <p class="inliner">Hi</p>
+                            <p id="sunrisetime" class="inliner">Sunrise</p>
                             <br>
                             <img src="/icons/sunset.png" alt="sunset icon" class="inliner img-margin" />
-                            <p class="inliner">Hi</p>
+                            <p id="sunsettime" class="inliner">Sunset</p>
                         </div>
                         <div class="humidity htitle">
                             <h4>Humidity</h4>
-                            <p class="highlight-content">80%</p>
+                            <p id="humidity" class="highlight-content">80%</p>
                         </div>
                         <div class="visibility htitle">
                             <h4>Visibility</h4>
-                            <p class="highlight-content">10km</p>
+                            <p id="vis" class="highlight-content">10km</p>
                         </div>
                         <div class="precipitation htitle">
                             <h4>Precipitation</h4>
-                            <p class="highlight-content">xyz</p>
+                            <p id="precip" class="highlight-content">11mm</p>
                         </div>
                     </div>
                 </div>

@@ -1,1 +1,1 @@
-correct the sub-card colours
+call update value function in setTempratue unit function
