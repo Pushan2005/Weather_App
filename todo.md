@@ -1,1 +1,2 @@
-call update value function in setTempratue unit function
+highlight changes
+temprature unit changes (call all functions again)
