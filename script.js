@@ -1,10 +1,10 @@
-let API_KEY = "";
+let API_KEY = "xyz";
 let dayCount = 7;
-let location = "";
-
-// let requestUrl = `http://api.weatherapi.com/v1/forecast.json?key=${API_Key}&q=${location}&days=${dayCount}&api=no&alerts=no`;
+let weatherLocation = "Bangalore";
+let requiredData;
 
 async function callWeatherAPI() {
+    let requestUrl = `http://api.weatherapi.com/v1/forecast.json?key=${API_Key}&q=${location}&days=${dayCount}&api=no&alerts=no`;
     const response = await fetch(requestUrl);
     const data = await response.json();
     const fullResponse = await data.forecast.forecastday;
@@ -6861,107 +6861,6 @@ let fullResponse = [
     },
 ];
 
-let requiredData = [
-    {
-        date: fullResponse[0].date,
-        weatherDesc: fullResponse[0].day.condition.text,
-        iconCode: fullResponse[0].day.condition.code,
-        avgTemp_c: fullResponse[0].day.avgtemp_c,
-        avgTemp_f: fullResponse[0].day.avgtemp_f,
-        uv: fullResponse[0].day.uv,
-        wind: fullResponse[0].day.maxwind_kph,
-        sunrise: fullResponse[0].astro.sunrise,
-        sunset: fullResponse[0].astro.sunset,
-        humidity: fullResponse[0].day.avghumidity,
-        visibility: fullResponse[0].day.avgvis_km,
-        precip: fullResponse[0].day.totalprecip_mm,
-    },
-    {
-        date: fullResponse[1].date,
-        iconCode: fullResponse[1].day.condition.code,
-        weatherDesc: fullResponse[1].day.condition.text,
-        avgTemp_c: fullResponse[1].day.avgtemp_c,
-        avgTemp_f: fullResponse[1].day.avgtemp_f,
-        uv: fullResponse[1].day.uv,
-        wind: fullResponse[1].day.maxwind_kph,
-        sunrise: fullResponse[1].astro.sunrise,
-        sunset: fullResponse[1].astro.sunset,
-        humidity: fullResponse[1].day.avghumidity,
-        visibility: fullResponse[1].day.avgvis_km,
-        precip: fullResponse[1].day.totalprecip_mm,
-    },
-    {
-        date: fullResponse[2].date,
-        weatherDesc: fullResponse[2].day.condition.text,
-        iconCode: fullResponse[2].day.condition.code,
-        avgTemp_c: fullResponse[2].day.avgtemp_c,
-        avgTemp_f: fullResponse[2].day.avgtemp_f,
-        uv: fullResponse[2].day.uv,
-        wind: fullResponse[2].day.maxwind_kph,
-        sunrise: fullResponse[2].astro.sunrise,
-        sunset: fullResponse[2].astro.sunset,
-        humidity: fullResponse[2].day.avghumidity,
-        visibility: fullResponse[2].day.avgvis_km,
-        precip: fullResponse[2].day.totalprecip_mm,
-    },
-    {
-        date: fullResponse[3].date,
-        weatherDesc: fullResponse[3].day.condition.text,
-        iconCode: fullResponse[3].day.condition.code,
-        avgTemp_c: fullResponse[3].day.avgtemp_c,
-        avgTemp_f: fullResponse[3].day.avgtemp_f,
-        uv: fullResponse[3].day.uv,
-        wind: fullResponse[3].day.maxwind_kph,
-        sunrise: fullResponse[3].astro.sunrise,
-        sunset: fullResponse[3].astro.sunset,
-        humidity: fullResponse[3].day.avghumidity,
-        visibility: fullResponse[3].day.avgvis_km,
-        precip: fullResponse[3].day.totalprecip_mm,
-    },
-    {
-        date: fullResponse[4].date,
-        weatherDesc: fullResponse[4].day.condition.text,
-        iconCode: fullResponse[4].day.condition.code,
-        avgTemp_c: fullResponse[4].day.avgtemp_c,
-        avgTemp_f: fullResponse[4].day.avgtemp_f,
-        uv: fullResponse[4].day.uv,
-        wind: fullResponse[4].day.maxwind_kph,
-        sunrise: fullResponse[4].astro.sunrise,
-        sunset: fullResponse[4].astro.sunset,
-        humidity: fullResponse[4].day.avghumidity,
-        visibility: fullResponse[4].day.avgvis_km,
-        precip: fullResponse[4].day.totalprecip_mm,
-    },
-    {
-        date: fullResponse[5].date,
-        weatherDesc: fullResponse[5].day.condition.text,
-        avgTemp_c: fullResponse[5].day.avgtemp_c,
-        avgTemp_f: fullResponse[5].day.avgtemp_f,
-        iconCode: fullResponse[5].day.condition.code,
-        uv: fullResponse[5].day.uv,
-        wind: fullResponse[5].day.maxwind_kph,
-        sunrise: fullResponse[5].astro.sunrise,
-        sunset: fullResponse[5].astro.sunset,
-        humidity: fullResponse[5].day.avghumidity,
-        visibility: fullResponse[5].day.avgvis_km,
-        precip: fullResponse[5].day.totalprecip_mm,
-    },
-    {
-        date: fullResponse[6].date,
-        weatherDesc: fullResponse[6].day.condition.text,
-        iconCode: fullResponse[6].day.condition.code,
-        avgTemp_c: fullResponse[6].day.avgtemp_c,
-        avgTemp_f: fullResponse[6].day.avgtemp_f,
-        uv: fullResponse[6].day.uv,
-        wind: fullResponse[6].day.maxwind_kph,
-        sunrise: fullResponse[6].astro.sunrise,
-        sunset: fullResponse[6].astro.sunset,
-        humidity: fullResponse[6].day.avghumidity,
-        visibility: fullResponse[6].day.avgvis_km,
-        precip: fullResponse[6].day.totalprecip_mm,
-    },
-];
-
 //states
 let tempUnit = 1; // 1 for celsius, 2 for fahrenheit
 let selectedDay = 0; // day index (0-6)
@@ -6973,6 +6872,14 @@ const mainTempElement = document.getElementById("maintemp");
 const mainDayDateElement = document.getElementById("maindaydate");
 const weatherDescriptionElement = document.getElementById("weatherdesc");
 const rainProbabilityElement = document.getElementById("rainprob");
+
+const changeLocationElement = document.getElementById("btn");
+//onbuttonclick event
+changeLocationElement.addEventListener("click", () => {
+    const value = document.getElementById("locchangeinput").value;
+    loc = value;
+    changeLocation(loc);
+});
 
 //sub card
 //day select
@@ -7026,9 +6933,32 @@ const highlightsElements = {
 
 //data
 
-console.log(requiredData);
+let iconMap = getIconMap();
+console.log(iconMap);
 
 //functions
+
+async function getIconMap() {
+    let iconUrl = "https://www.weatherapi.com/docs/weather_conditions.json";
+    const response = await fetch(iconUrl);
+    const data = await response.json();
+    return data;
+}
+
+function changeIcons() {
+    for (let i = 0; i <= 6; i++) {
+        let icon_Code = requiredData[i].iconCode;
+        let icon;
+        for (let obj of iconMap) {
+            if (obj.code == icon_Code) {
+                icon = obj.icon;
+            }
+        }
+        daysElements[i].icon.src = `/icons/day/114.svg`;
+    }
+}
+updateData();
+changeIcons();
 
 function setDay(x) {
     selectedDay = x;
@@ -7039,5 +6969,122 @@ function setTempratureUnit(x) {
 }
 
 function changeLocation(x) {
-    location = x;
+    weatherLocation = x;
+    updateData();
+    updatePage();
+}
+
+function updateData() {
+    requiredData = [
+        {
+            date: fullResponse[0].date,
+            weatherDesc: fullResponse[0].day.condition.text,
+            iconCode: fullResponse[0].day.condition.code,
+            avgTemp_c: fullResponse[0].day.avgtemp_c,
+            avgTemp_f: fullResponse[0].day.avgtemp_f,
+            uv: fullResponse[0].day.uv,
+            wind: fullResponse[0].day.maxwind_kph,
+            sunrise: fullResponse[0].astro.sunrise,
+            sunset: fullResponse[0].astro.sunset,
+            humidity: fullResponse[0].day.avghumidity,
+            visibility: fullResponse[0].day.avgvis_km,
+            precip: fullResponse[0].day.totalprecip_mm,
+        },
+        {
+            date: fullResponse[1].date,
+            iconCode: fullResponse[1].day.condition.code,
+            weatherDesc: fullResponse[1].day.condition.text,
+            avgTemp_c: fullResponse[1].day.avgtemp_c,
+            avgTemp_f: fullResponse[1].day.avgtemp_f,
+            uv: fullResponse[1].day.uv,
+            wind: fullResponse[1].day.maxwind_kph,
+            sunrise: fullResponse[1].astro.sunrise,
+            sunset: fullResponse[1].astro.sunset,
+            humidity: fullResponse[1].day.avghumidity,
+            visibility: fullResponse[1].day.avgvis_km,
+            precip: fullResponse[1].day.totalprecip_mm,
+        },
+        {
+            date: fullResponse[2].date,
+            weatherDesc: fullResponse[2].day.condition.text,
+            iconCode: fullResponse[2].day.condition.code,
+            avgTemp_c: fullResponse[2].day.avgtemp_c,
+            avgTemp_f: fullResponse[2].day.avgtemp_f,
+            uv: fullResponse[2].day.uv,
+            wind: fullResponse[2].day.maxwind_kph,
+            sunrise: fullResponse[2].astro.sunrise,
+            sunset: fullResponse[2].astro.sunset,
+            humidity: fullResponse[2].day.avghumidity,
+            visibility: fullResponse[2].day.avgvis_km,
+            precip: fullResponse[2].day.totalprecip_mm,
+        },
+        {
+            date: fullResponse[3].date,
+            weatherDesc: fullResponse[3].day.condition.text,
+            iconCode: fullResponse[3].day.condition.code,
+            avgTemp_c: fullResponse[3].day.avgtemp_c,
+            avgTemp_f: fullResponse[3].day.avgtemp_f,
+            uv: fullResponse[3].day.uv,
+            wind: fullResponse[3].day.maxwind_kph,
+            sunrise: fullResponse[3].astro.sunrise,
+            sunset: fullResponse[3].astro.sunset,
+            humidity: fullResponse[3].day.avghumidity,
+            visibility: fullResponse[3].day.avgvis_km,
+            precip: fullResponse[3].day.totalprecip_mm,
+        },
+        {
+            date: fullResponse[4].date,
+            weatherDesc: fullResponse[4].day.condition.text,
+            iconCode: fullResponse[4].day.condition.code,
+            avgTemp_c: fullResponse[4].day.avgtemp_c,
+            avgTemp_f: fullResponse[4].day.avgtemp_f,
+            uv: fullResponse[4].day.uv,
+            wind: fullResponse[4].day.maxwind_kph,
+            sunrise: fullResponse[4].astro.sunrise,
+            sunset: fullResponse[4].astro.sunset,
+            humidity: fullResponse[4].day.avghumidity,
+            visibility: fullResponse[4].day.avgvis_km,
+            precip: fullResponse[4].day.totalprecip_mm,
+        },
+        {
+            date: fullResponse[5].date,
+            weatherDesc: fullResponse[5].day.condition.text,
+            avgTemp_c: fullResponse[5].day.avgtemp_c,
+            avgTemp_f: fullResponse[5].day.avgtemp_f,
+            iconCode: fullResponse[5].day.condition.code,
+            uv: fullResponse[5].day.uv,
+            wind: fullResponse[5].day.maxwind_kph,
+            sunrise: fullResponse[5].astro.sunrise,
+            sunset: fullResponse[5].astro.sunset,
+            humidity: fullResponse[5].day.avghumidity,
+            visibility: fullResponse[5].day.avgvis_km,
+            precip: fullResponse[5].day.totalprecip_mm,
+        },
+        {
+            date: fullResponse[6].date,
+            weatherDesc: fullResponse[6].day.condition.text,
+            iconCode: fullResponse[6].day.condition.code,
+            avgTemp_c: fullResponse[6].day.avgtemp_c,
+            avgTemp_f: fullResponse[6].day.avgtemp_f,
+            uv: fullResponse[6].day.uv,
+            wind: fullResponse[6].day.maxwind_kph,
+            sunrise: fullResponse[6].astro.sunrise,
+            sunset: fullResponse[6].astro.sunset,
+            humidity: fullResponse[6].day.avghumidity,
+            visibility: fullResponse[6].day.avgvis_km,
+            precip: fullResponse[6].day.totalprecip_mm,
+        },
+    ];
+}
+
+function updatePage() {
+    //
+}
+
+function iconMapper(code) {
+    for (let obj of iconMap) {
+        if (obj.code == code) {
+            return obj.icon;
+        }
+    }
 }
