@@ -1,4 +1,4 @@
-const API_KEY = "";
+const API_KEY = "d692b7168e894b18adb162613231012";
 let dayCount = 7;
 let weatherLocation = "";
 let requiredData;
