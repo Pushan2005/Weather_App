@@ -1,4 +1,4 @@
-const API_KEY = "44f4f0fbd38a4fdb9aa162130231012";
+const API_KEY = "";
 let dayCount = 7;
 let weatherLocation = "";
 let requiredData;
@@ -403,6 +403,11 @@ function changeMainCard() {
 function changeHighlights() {
     highlightsElements.uv.innerHTML = requiredData[selectedDay].uv;
     highlightsElements.humidity.innerHTML = `${requiredData[selectedDay].humidity}%`;
+    highlightsElements.sunsetSunrise.sunrise.innerHTML = `${requiredData[selectedDay].sunrise}`;
+    highlightsElements.sunsetSunrise.sunset.innerHTML = `${requiredData[selectedDay].sunset}`;
+    highlightsElements.visibility.innerHTML = `${requiredData[selectedDay].visibility}km`;
+    highlightsElements.wind.innerHTML = `${requiredData[selectedDay].wind}km/h`;
+    highlightsElements.precipitation.innerHTML = `${requiredData[selectedDay].precip}mm`;
 }
 
 function changeIcons() {
@@ -431,7 +436,6 @@ async function callWeatherAPI() {
     let requestUrl = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${weatherLocation}&days=${dayCount}&api=no&alerts=no`;
     const response = await fetch(requestUrl);
     const data = await response.json();
-    console.log(data);
     const fullResponse = await data.forecast.forecastday;
     requiredData = [
         {
@@ -541,8 +545,10 @@ async function callWeatherAPI() {
         },
     ];
     changeIcons();
-    callLog();
     changeMainCard();
+    changeHighlights();
+    callLog();
+    console.log("Changes complete");
 }
 //onbuttonclick event
 changeLocationElement.addEventListener("click", () => {
@@ -554,13 +560,13 @@ changeLocationElement.addEventListener("click", () => {
 
 function setDay(x) {
     selectedDay = x;
-    console.log(selectedDay);
     changeMainCard();
     changeHighlights();
 }
 
 function setTempratureUnit(x) {
     tempUnit = x;
+    changeMainCard();
 }
 
 function callLog() {
